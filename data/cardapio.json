@@ -1,0 +1,51 @@
+[
+    {
+        "titulo": "Café Expresso",
+        "img": "../img/inekehuizing-coffee-3727673_1920",
+        "url": "../pages/expresso.html",
+        "descricao": "Café forte e aromático preparado na hora",
+        "preco": 6.50
+    },
+    {
+        "titulo": "Cappuccino",
+        "img": "../img/grafmex-coffee-3120757_1920",
+        "url": "../pages/cappuccino.html",
+        "descricao": "Mistura cremosa de café, leite e chocolate",
+        "preco": 9.90
+    },
+    {
+        "titulo": "Latte",
+        "img": "../img/VillaCafé_Cafés-1-760x460",
+        "url": "../pages/latte.html",
+        "descricao": "Café suave com bastante leite vaporizado",
+        "preco": 10.50
+    },
+    {
+        "titulo": "Mocha",
+        "img": "../img/juno1412-coffee-5981681_1920",
+        "url": "../pages/mocha.html",
+        "descricao": "Combinação deliciosa de café e chocolate",
+        "preco": 11.90
+    },
+    {
+        "titulo": "Pão de Queijo",
+        "img": "../img/craveiro6-pao-de-queijo-4968507_1920",
+        "url": "../pages/paodequeijo.html",
+        "descricao": "Tradicional pão de queijo quentinho",
+        "preco": 5.50
+    },
+    {
+        "titulo": "Croissant",
+        "img": "../img/photowill-bread-4077812_1920",
+        "url": "../pages/croissant.html",
+        "descricao": "Massa folhada leve e crocante",
+        "preco": 8.00
+    },
+    {
+        "titulo": "Cheesecake",
+        "img": "../img/teddybear78-dessert-2366485_1920",
+        "url": "../pages/cheesecake.html",
+        "descricao": "Sobremesa cremosa com calda de frutas vermelhas",
+        "preco": 12.90
+    }
+]

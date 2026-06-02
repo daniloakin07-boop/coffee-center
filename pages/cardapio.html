@@ -1,33 +1,28 @@
+HTML
 <!DOCTYPE html>
 <html>
     <head>
         <title>Cardápio | Coffee Center</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="widht=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Cafés especiais e blends">
         <link rel="stylesheet" href="../css/style.css">
     </head>
  
     <body>
         <script>
-            // Assim que a página carrega, pergunta ao servidor:
-            // tem alguém logado?
-            fetch("http://localhost:3000/me",{
+            fetch("http://localhost:3000/me", {
                 credentials: "include"
-                    // Envia o cookie de sessão junto com a requisição
             })
             .then(resposta => {
-                if(!resposta.ok){
+                if (!resposta.ok) {
                     alert("Você precisa fazer o login para acessar o cardápio!");
                     window.location.href = "login.html";
                 }
-                // se resposta.ok = true, a página simplesmente continua carregando
             })
- 
         </script>
  
-        <!-- Cabeçalho reutilizado -->
-        <header class="topo"> <!-- Cabeçalho do Site -->
+        <header class="topo">
             <div class="logo">
                 <a href="../index.html">Coffee<span>Center</span></a>
             </div>
@@ -39,21 +34,14 @@
             </nav>
         </header>
  
-        <!-- Seção do cardápio -->
-        <section class="cardapio">
- 
-            <h1>Nossos Cardápio</h1>
- 
-            <input id="BuscarCardápio" placeholder="Buscar Cardápio">
- 
-            <!-- CONTAINER PARA AGRUPAR O CARDÁPIO -->
-            <div id="ListaCardápio" class="cardapio-grid">
-                <!-- O JS IRÁ MONTAR O CARDÁPIO AQUI DENTRO -->
+        <section class="cardapio" style="padding: 30px 20px;">
+            <h1>Nosso Cardápio</h1>
+            <div style="text-align:center; margin-bottom: 20px;">
+                <input id="buscarCardapio" placeholder="Buscar Cardápio" style="padding: 8px 14px; font-size: 15px; border-radius: 6px; border: 1px solid #c8922a; background: #2e1a0e; color: #f0e6d0; width: 260px;">
             </div>
- 
+            <div id="listacardapio" class="cardapio-grid"></div>
         </section>
  
-        <!-- Rodapé reutilizado -->
         <footer class="rodape">
             <p>® 2026 Coffee Center. Todos os Direitos Reservados</p>
             <p><a href="contato.html">Entre em Contato</a></p>
@@ -61,4 +49,3 @@
  
         <script src="../js/script.js"></script>
     </body>
-</html>
