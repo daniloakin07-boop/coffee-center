@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cardápio | Coffee Center</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="widht=device-width, initial-scale=1.0">
+        <meta name="description" content="Cafés especiais e blends">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+ 
+    <body>
+        <script>
+            // Assim que a página carrega, pergunta ao servidor:
+            // tem alguém logado?
+            fetch("http://localhost:3000/me",{
+                credentials: "include"
+                    // Envia o cookie de sessão junto com a requisição
+            })
+            .then(resposta => {
+                if(!resposta.ok){
+                    alert("Você precisa fazer o login para acessar o cardápio!");
+                    window.location.href = "login.html";
+                }
+                // se resposta.ok = true, a página simplesmente continua carregando
+            })
+ 
+        </script>
+ 
+        <!-- Cabeçalho reutilizado -->
+        <header class="topo"> <!-- Cabeçalho do Site -->
+            <div class="logo">
+                <a href="../index.html">Coffee<span>Center</span></a>
+            </div>
+            <nav class="menu">
+                <a href="../index.html">Início</a>
+                <a href="cardapio.html" class="ativo">Cardápio</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="contato.html">Contato</a>
+            </nav>
+        </header>
+ 
+        <!-- Seção do cardápio -->
+        <section class="cardapio">
+ 
+            <h1>Nossos Cardápio</h1>
+ 
+            <input id="BuscarCardápio" placeholder="Buscar Cardápio">
+ 
+            <!-- CONTAINER PARA AGRUPAR O CARDÁPIO -->
+            <div id="ListaCardápio" class="cardapio-grid">
+                <!-- O JS IRÁ MONTAR O CARDÁPIO AQUI DENTRO -->
+            </div>
+ 
+        </section>
+ 
+        <!-- Rodapé reutilizado -->
+        <footer class="rodape">
+            <p>® 2026 Coffee Center. Todos os Direitos Reservados</p>
+            <p><a href="contato.html">Entre em Contato</a></p>
+        </footer>
+ 
+        <script src="../js/script.js"></script>
+    </body>
+</html>
