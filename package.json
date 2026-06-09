@@ -1,25 +1,19 @@
 {
   "name": "coffee-center",
   "version": "1.0.0",
-  "description": "Bem-vindo à **Coffee Center**, um espaço criado para conectar pessoas através da paixão pelo café. Nossa missão é oferecer produtos de alta qualidade, atendimento excepcional e uma experiência acolhedora para todos os clientes.",
-  "main": "index.js",
+  "description": "Bem-vindo à Coffee Center!",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/daniloakin07-boop/coffee-center.git"
-  },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/daniloakin07-boop/coffee-center/issues"
-  },
-  "homepage": "https://github.com/daniloakin07-boop/coffee-center#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "dotenv": "^16.0.0",
+    "express": "^5.2.1",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.6.0"
   }
 }
