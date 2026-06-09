@@ -1,9 +1,5 @@
-
 const mysql = require("mysql2/promise");
-const fs = require("fs");
-const path = require("path");
  
-
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT),
@@ -11,9 +7,12 @@ const pool = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
  
-    ssl: {
+    //  Usa a variável de ambiente DB_SSL_CA em vez do arquivo ca.pem
+    ssl: process.env.DB_SSL_CA ? {
         rejectUnauthorized: true,
-        ca: fs.readFileSync(path.resolve(__dirname, "ca.pem"), "utf8")
+        ca: process.env.DB_SSL_CA
+    } : {
+        rejectUnauthorized: false // fallback para desenvolvimento local
     },
  
     waitForConnections: true,
@@ -28,9 +27,8 @@ const pool = mysql.createPool({
         conn.release();
     } catch (err) {
         console.error("Erro ao conectar ao banco:", err);
-        process.exit(1); 
+        process.exit(1);
     }
 })();
  
 module.exports = pool;
- 
