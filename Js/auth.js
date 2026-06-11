@@ -1,3 +1,7 @@
+const BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:3000"
+    : "https://coffee-center-2.onrender.com"
+
 const formLogin = document.getElementById("formLogin")
 if (formLogin) {
     formLogin.addEventListener("submit", async function (e) {
@@ -8,7 +12,7 @@ if (formLogin) {
         const mensagem = document.getElementById("mensagemLogin")
 
         try {
-            const resposta = await fetch("http://localhost:3000/login", {
+            const resposta = await fetch(`${BASE_URL}/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
@@ -17,9 +21,10 @@ if (formLogin) {
 
             if (resposta.ok) {
                 mensagem.textContent = "Login realizado com sucesso!"
-                window.location.href = "produtos.html"
+                window.location.href = "cardapio.html"
             } else {
-                mensagem.textContent = "E-mail ou senha incorretos."
+                const dados = await resposta.json()
+                mensagem.textContent = dados.erro || "E-mail ou senha incorretos."
             }
         } catch {
             mensagem.textContent = "Erro ao conectar com o servidor."
@@ -44,9 +49,10 @@ if (formCadastro) {
         }
 
         try {
-            const resposta = await fetch("http://localhost:3000/cadastro", {
+            const resposta = await fetch(`${BASE_URL}/cadastro`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({ nome, email, senha })
             })
 
@@ -56,7 +62,8 @@ if (formCadastro) {
                     window.location.href = "login.html"
                 }, 1500)
             } else {
-                mensagem.textContent = "Erro ao realizar cadastro."
+                const dados = await resposta.json()
+                mensagem.textContent = dados.erro || "Erro ao realizar cadastro."
             }
         } catch {
             mensagem.textContent = "Erro ao conectar com o servidor."
