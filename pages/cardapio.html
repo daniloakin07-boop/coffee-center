@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html>
     <head>
         <title>Cardápio | Coffee Center</title>
@@ -34,23 +34,6 @@
             <p><a href="contato.html">Entre em Contato</a></p>
         </footer>
  
-        <script>
-            const BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-                ? "http://localhost:3000"
-                : "https://coffee-center-2.onrender.com"
- 
-            fetch(`${BASE_URL}/me`, { credentials: "include" })
-                .then(resposta => {
-                    if (!resposta.ok) {
-                        alert("Você precisa fazer login para acessar o cardápio!")
-                        window.location.href = "login.html"
-                    }
-                })
-                .catch(() => {
-                    alert("Erro ao verificar sessão.")
-                    window.location.href = "login.html"
-                })
-        </script>
         <script src="../js/script.js"></script>
     </body>
 </html>
