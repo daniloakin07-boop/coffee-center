@@ -239,6 +239,137 @@ footer a {
   margin-bottom: 10px;
 }
 
+/* MODAL DE DETALHES DO CARDÁPIO — mesmo layout da tela detalhes.js do mobile */
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.modal-overlay:target {
+  display: flex;
+}
+
+.modal-conteudo {
+  background-color: #1a0f08;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-voltar,
+.modal-voltar-baixo {
+  color: #c8922a;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.modal-voltar {
+  align-self: flex-start;
+  margin-bottom: 20px;
+}
+
+.modal-titulo {
+  color: #c8922a;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.modal-preco-box {
+  background-color: #2e1a0e;
+  border-radius: 8px;
+  border: 1px solid #c8922a;
+  padding: 10px 30px;
+  margin-bottom: 24px;
+}
+
+.modal-preco {
+  color: #c8922a;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.modal-secao {
+  background-color: #2e1a0e;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.modal-secao-titulo {
+  color: #c8922a;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 8px;
+}
+
+.modal-secao-texto {
+  color: #f0e6d0;
+  font-size: 14px;
+  line-height: 22px;
+  margin: 0;
+}
+
+.modal-info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.modal-info-item {
+  background-color: #2e1a0e;
+  border-radius: 8px;
+  padding: 14px;
+  width: 47%;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.modal-info-label {
+  color: #c8922a;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0 0 4px;
+}
+
+.modal-info-valor {
+  color: #f0e6d0;
+  font-size: 13px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.modal-voltar-baixo {
+  background-color: #c8922a;
+  color: #1a0f08;
+  padding: 12px 30px;
+  border-radius: 8px;
+}
+
 /* CONTATO */
 
 .contato {

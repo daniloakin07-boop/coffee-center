@@ -4,48 +4,90 @@
         "img": "../img/inekehuizing-coffee-3727673_1920",
         "url": "../pages/expresso.html",
         "descricao": "Café forte e aromático preparado na hora",
-        "preco": 6.50
+        "descricaoCompleta": "O Café Expresso é preparado com grãos selecionados, extraídos sob alta pressão para garantir uma bebida intensa, encorpada e aromática. Perfeito para quem aprecia o café em sua forma mais pura e genuína.",
+        "preco": 6.50,
+        "ingredientes": "Grãos de café arábica selecionados, água filtrada",
+        "origem": "Brasil - Minas Gerais",
+        "tempoPreparo": "2 minutos",
+        "categoria": "Cafés Quentes",
+        "nivel": "Intensidade alta"
     },
     {
         "titulo": "Cappuccino",
         "img": "../img/grafmex-coffee-3120757_1920",
         "url": "../pages/cappuccino.html",
         "descricao": "Mistura cremosa de café, leite e chocolate",
-        "preco": 9.90
+        "descricaoCompleta": "O Cappuccino é uma harmoniosa combinação de espresso, leite vaporizado e espuma de leite cremosa, finalizado com um toque de chocolate em pó. Uma experiência equilibrada e reconfortante.",
+        "preco": 9.90,
+        "ingredientes": "Café espresso, leite integral, espuma de leite, chocolate em pó",
+        "origem": "Brasil - São Paulo",
+        "tempoPreparo": "4 minutos",
+        "categoria": "Cafés Especiais",
+        "nivel": "Intensidade média"
     },
     {
         "titulo": "Latte",
         "img": "../img/VillaCafé_Cafés-1-760x460",
         "url": "../pages/latte.html",
         "descricao": "Café suave com bastante leite vaporizado",
-        "preco": 10.50
+        "descricaoCompleta": "O Latte é uma bebida suave que combina uma dose de espresso com uma generosa quantidade de leite vaporizado. Cremoso, equilibrado e delicado — a opção perfeita para quem prefere o café mais suave.",
+        "preco": 10.50,
+        "ingredientes": "Café espresso, leite integral vaporizado, espuma de leite leve",
+        "origem": "Etiópia - Sidama",
+        "tempoPreparo": "4 minutos",
+        "categoria": "Cafés Especiais",
+        "nivel": "Intensidade baixa"
     },
     {
         "titulo": "Mocha",
         "img": "../img/juno1412-coffee-5981681_1920",
         "url": "../pages/mocha.html",
         "descricao": "Combinação deliciosa de café e chocolate",
-        "preco": 11.90
+        "descricaoCompleta": "O Mocha é uma fusão de café espresso com chocolate amargo de primeira qualidade, coberto por uma generosa camada de espuma de leite. Uma experiência indulgente para amantes de café e chocolate.",
+        "preco": 11.90,
+        "ingredientes": "Café espresso, chocolate amargo premium, leite vaporizado, espuma de leite",
+        "origem": "Colômbia - Huila",
+        "tempoPreparo": "5 minutos",
+        "categoria": "Cafés Especiais",
+        "nivel": "Intensidade média-alta"
     },
     {
         "titulo": "Pão de Queijo",
         "img": "../img/craveiro6-pao-de-queijo-4968507_1920",
         "url": "../pages/paodequeijo.html",
         "descricao": "Tradicional pão de queijo quentinho",
-        "preco": 5.50
+        "descricaoCompleta": "Nosso Pão de Queijo é feito com polvilho azedo, queijo meia-cura e ingredientes frescos selecionados. Servido quentinho, com casca levemente crocante e interior macio e puxento.",
+        "preco": 5.50,
+        "ingredientes": "Polvilho azedo, queijo meia-cura, ovos, leite, óleo, sal",
+        "origem": "Receita Mineira Tradicional",
+        "tempoPreparo": "15 minutos",
+        "categoria": "Salgados",
+        "nivel": "Clássico brasileiro"
     },
     {
         "titulo": "Croissant",
         "img": "../img/photowill-bread-4077812_1920",
         "url": "../pages/croissant.html",
         "descricao": "Massa folhada leve e crocante",
-        "preco": 8.00
+        "descricaoCompleta": "Nosso Croissant é preparado artesanalmente com manteiga francesa de alta qualidade. Massa folhada com camadas delicadas, exterior dourado e crocante, interior macio e amanteigado.",
+        "preco": 8.00,
+        "ingredientes": "Farinha de trigo, manteiga francesa, açúcar, sal, fermento, leite",
+        "origem": "Receita Francesa Clássica",
+        "tempoPreparo": "20 minutos",
+        "categoria": "Salgados e Pães",
+        "nivel": "Clássico francês"
     },
     {
         "titulo": "Cheesecake",
         "img": "../img/teddybear78-dessert-2366485_1920",
         "url": "../pages/cheesecake.html",
         "descricao": "Sobremesa cremosa com calda de frutas vermelhas",
-        "preco": 12.90
+        "descricaoCompleta": "Nossa Cheesecake é preparada com cream cheese de alta qualidade, base de biscoito amanteigado e finalizada com uma generosa calda de frutas vermelhas frescas. Cremosa, equilibrada e irresistível.",
+        "preco": 12.90,
+        "ingredientes": "Cream cheese, açúcar, ovos, biscoito, manteiga, frutas vermelhas, gelatina",
+        "origem": "Receita New York Style",
+        "tempoPreparo": "Disponível no momento",
+        "categoria": "Sobremesas",
+        "nivel": "Clássico americano"
     }
 ]

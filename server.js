@@ -9,6 +9,7 @@ require("dotenv").config();
  
 // 1. Importar o Express - ele cria e gerencia o servidor
 const express = require("express");
+const path = require("path");
  
 // 2. Importar o CORS - permite que o navegador "converse" com o servidor
 const cors = require("cors");
@@ -44,8 +45,11 @@ app.use(cors({
 // 9. Ativa o leitor de JSON - permite entender os dados recebidos
 // Sem isso, o servidor não consegue ler o que o formulário envia
 app.use(express.json());
+
+// 10. Serve os arquivos estáticos do projeto (HTML, CSS, JS, imagens e JSON)
+app.use(express.static(path.join(__dirname)));
  
-//10. Configuração de Sessão (do navegador)
+//11. Configuração de Sessão (do navegador)
 const sessionConfig = {
     secret: process.env.SESSION_SECRET,     
         // chave secreta para assinar o cookie

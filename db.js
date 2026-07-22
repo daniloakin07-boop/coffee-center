@@ -26,8 +26,7 @@ const pool = mysql.createPool({
         console.log("Conectado ao banco de dados Aiven MySQL");
         conn.release();
     } catch (err) {
-        console.error("Erro ao conectar ao banco:", err);
-        process.exit(1);
+        console.warn("Banco de dados indisponível no momento. O servidor continuará rodando para páginas estáticas.");
     }
 })();
  
