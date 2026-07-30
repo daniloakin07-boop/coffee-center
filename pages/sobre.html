@@ -1,53 +1,95 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Sobre | Coffee Center</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="widht=device-width, initial-scale=1.0">
-        <meta name="description" content="Sobre o Coffee Center">
-        <link rel="stylesheet" href="../css/style.css">
-    </head>
-
-    <body>
-        <!-- Cabeçalho reutilizado -->
-        <header class="topo"> <!-- Cabeçalho do Site -->
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sobre o Coffee Center - Cafeteria e café especial.">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <title>Sobre | Coffee Center</title>
+</head>
+<body>
+    <header class="topo"> <!-- Cabeçalho do Site -->
             <div class="logo">
                 <a href="../index.html">Coffee<span>Center</span></a>
             </div>
             <nav class="menu">
                 <a href="../index.html">Início</a>
-                <a href="cardapio.html">cardapio</a>
                 <a href="sobre.html" class="ativo">Sobre</a>
                 <a href="contato.html">Contato</a>
             </nav>
         </header>
 
-        <!-- Conteúdo da página -->
         <section class="sobre">
+            <div class="container">
+                <h2>Sobre o Coffee Center</h2>
+        <p class="sobre-subtitulo">
+            O Coffee Center é uma cafeteria dedicada a oferecer cafés especiais focados em qualidade e experiência.
+        </p>
 
-        <h2>Sobre o Coffee Center</h2>
-        <p>O Coffee Center é uma loja de cafés especiais
-            focada em qualidade e experiência</p>
+        <!-- NOSSA HISTÓRIA -->
+        <div class="secao">
+            <h3>Nossa História</h3>
+            <p class="secao-texto">
+                Fundada com a paixão pelo café especial, a Coffee Center nasceu do desejo de conectar pessoas através de uma xícara bem preparada. Buscamos unir tradição e inovação para proporcionar momentos únicos aos nossos clientes.
+            </p>
+        </div>
 
-        <h3>Nossa missão</h3>
-        <p>Transformar cada xícara em uma experiência única por meio do café especial</p>
+        <!-- NOSSA MISSÃO -->
+        <div class="secao">
+            <h3>Nossa Missão</h3>
+            <p class="secao-texto">
+                Transformar cada xícara em uma experiência única por meio do café especial, com atendimento humanizado e um ambiente acolhedor que faz você querer voltar sempre.
+            </p>
+        </div>
 
-        <h3>Nossos valores</h3>
-        <!-- Lista de Valores -->
-         <ul>
-            <li>Qualidade</li>
-            <li>Sustentabilidade</li>
-            <li>Transparência</li>
-         </ul>
+        <!-- NOSSA VISÃO -->
+        <div class="secao">
+            <h3>Nossa Visão</h3>
+            <p class="secao-texto">
+                Ser reconhecida como referência em qualidade, inovação e excelência no mercado de cafeterias, levando o melhor do café especial a cada cliente.
+            </p>
+        </div>
 
-        </section>
+        <!-- NOSSOS VALORES -->
+        <div class="secao">
+            <h3>Nossos Valores</h3>
+            <ul class="valores-lista">
+                <li><strong>Qualidade</strong> — em cada produto e serviço oferecido</li>
+                <li><strong>Sustentabilidade</strong> — grãos de origem responsável</li>
+                <li><strong>Transparência</strong> — honestidade com clientes e parceiros</li>
+                <li><strong>Inovação</strong> — sempre buscando o melhor para você</li>
+                <li><strong>Ética</strong> — respeito a todos os envolvidos</li>
+            </ul>
+        </div>
 
-        <!-- Rodapé reutilizado -->
+        <!-- DIFERENCIAIS -->
+        <div class="secao">
+            <h3>Nossos Diferenciais</h3>
+            <div class="diferencial-grid">
+                <div class="diferencial-item">
+                    <p class="diferencial-texto">Grãos Selecionados</p>
+                </div>
+                <div class="diferencial-item">
+                    <p class="diferencial-texto">Equipe Treinada</p>
+                </div>
+                <div class="diferencial-item">
+                    <p class="diferencial-texto">Ambiente Confortável</p>
+                </div>
+                <div class="diferencial-item">
+                    <p class="diferencial-texto">Atendimento Personalizado</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
         <footer class="rodape">
             <p>® 2026 Coffee Center. Todos os Direitos Reservados</p>
             <p><a href="contato.html">Entre em Contato</a></p>
         </footer>
 
-    <script src="../js/script.js"></script>
+    <script src="../Js/auth.js"></script>
     </body>
 </html>
