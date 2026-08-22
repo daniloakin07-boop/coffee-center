@@ -1,3 +1,8 @@
+// Corrige automaticamente 127.0.0.1 -> localhost para o cookie de sessão funcionar
+if (window.location.hostname === "127.0.0.1") {
+    window.location.href = window.location.href.replace("127.0.0.1", "localhost")
+}
+
 const BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://localhost:3000"
     : "https://coffee-center-2.onrender.com"
