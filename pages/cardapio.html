@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
     <head>
         <title>Cardápio | Coffee Center</title>
         <meta charset="UTF-8">
@@ -18,16 +18,23 @@
                 <a href="cardapio.html" class="ativo">Cardápio</a>
                 <a href="sobre.html">Sobre</a>
                 <a href="contato.html">Contato</a>
+                <a href="carrinho.html" style="position:relative; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; text-decoration:none;">
+                    <img src="../img/image-1787425700478.png" alt="Carrinho" style="width:34px; height:34px; object-fit:contain; display:block;">
+                    <span id="contadorCarrinho" style="display:none; position:absolute; top:-8px; right:-10px; background:#c8922a; color:#2e1a0e; font-size:12px; font-weight:bold; border-radius:50%; width:18px; height:18px; align-items:center; justify-content:center;">0</span>
+                </a>
             </nav>
         </header>
  
+        <main>
         <section class="cardapio" style="padding: 30px 20px;">
             <h1>Nosso Cardápio</h1>
             <div style="text-align:center; margin-bottom: 20px;">
+                <label for="buscarCardapio" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;">Buscar no cardápio</label>
                 <input id="buscarCardapio" placeholder="Buscar Cardápio" style="padding: 8px 14px; font-size: 15px; border-radius: 6px; border: 1px solid #c8922a; background: #2e1a0e; color: #f0e6d0; width: 260px;">
             </div>
             <div id="listacardapio" class="cardapio-grid"></div>
         </section>
+        </main>
  
         <footer class="rodape">
             <p>® 2026 Coffee Center. Todos os Direitos Reservados</p>
@@ -35,6 +42,7 @@
         </footer>
  
         <script src="../Js/auth.js"></script>
+        <script src="../Js/carrinho.js"></script>
         <script src="../Js/script.js"></script>
     </body>
 </html>

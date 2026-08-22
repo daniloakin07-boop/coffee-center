@@ -1,11 +1,31 @@
-// Corrige automaticamente 127.0.0.1 -> localhost para o cookie de sessão funcionar
-if (window.location.hostname === "127.0.0.1") {
-    window.location.href = window.location.href.replace("127.0.0.1", "localhost")
-}
-
 const BASE_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://localhost:3000"
     : "https://coffee-center-2.onrender.com"
+
+function paginaNoServidorLocal() {
+    const host = window.location.hostname
+    return host === "localhost" || host === "127.0.0.1"
+}
+
+function urlPagina(pagina) {
+    if (paginaNoServidorLocal() && !window.location.href.includes("http://localhost:3000")) {
+        return `http://localhost:3000/pages/${pagina}`
+    }
+
+    if (window.location.pathname.includes("/pages/")) {
+        return `${window.location.origin}/pages/${pagina}`
+    }
+
+    return `${window.location.origin}/${pagina}`
+}
+
+function irParaLogin() {
+    window.location.assign(urlPagina("login.html"))
+}
+
+function irParaCardapio() {
+    window.location.assign(urlPagina("cardapio.html"))
+}
 
 async function verificarSessao() {
     const estaNaPaginaCardapio = window.location.pathname.includes("cardapio.html")
@@ -19,13 +39,13 @@ async function verificarSessao() {
         const dados = await resposta.json().catch(() => ({}))
 
         if (!resposta.ok || !dados.logado) {
-            window.location.href = "login.html"
+            irParaLogin()
             return false
         }
 
         return true
     } catch {
-        window.location.href = "login.html"
+        irParaLogin()
         return false
     }
 }
@@ -53,7 +73,9 @@ if (formLogin) {
 
             if (resposta.ok) {
                 mensagem.textContent = "Login realizado com sucesso!"
-                window.location.href = "cardapio.html"
+                setTimeout(() => {
+                    irParaCardapio()
+                }, 300)
             } else {
                 const dados = await resposta.json()
                 mensagem.textContent = dados.erro || "E-mail ou senha incorretos."
@@ -91,7 +113,7 @@ if (formCadastro) {
             if (resposta.ok) {
                 mensagem.textContent = "Cadastro realizado! Redirecionando..."
                 setTimeout(() => {
-                    window.location.href = "login.html"
+                    irParaLogin()
                 }, 1500)
             } else {
                 const dados = await resposta.json()

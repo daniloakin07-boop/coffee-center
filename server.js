@@ -1,4 +1,3 @@
-
 /* 
 ===============================================
 1 PARTE - CONFIGURAR O SERVIDOR
@@ -177,6 +176,41 @@ app.post("/logout", (req, res) => {
         res.clearCookie("techeduca.sid")
         res.json({mensagem: "Logout realizado"});
     });
+});
+
+// 6. Define a rota POST "/pedido" - registra os itens do carrinho e gera o número de chamada
+app.post("/pedido", async (req, res) => {
+    try {
+        if (!req.session.usuario) {
+            return res.status(401).json({ erro: "Você precisa estar logado para finalizar o pedido" });
+        }
+
+        const { itens } = req.body;
+
+        if (!itens || !Array.isArray(itens) || itens.length === 0) {
+            return res.status(400).json({ erro: "Carrinho vazio" });
+        }
+
+        const [linhas] = await pool.execute(
+            "SELECT COALESCE(MAX(numero_chamado), 0) + 1 AS proximo FROM pedidos"
+        );
+        const numeroChamado = linhas[0].proximo;
+
+        for (const item of itens) {
+            await pool.execute(
+                "INSERT INTO pedidos(numero_chamado, nome_pedido, preco, quantidade) VALUES (?,?,?,?)",
+                [numeroChamado, item.nome, item.preco, item.quantidade]
+            );
+        }
+
+        res.status(201).json({
+            mensagem: "Pedido realizado com sucesso!",
+            numeroPedido: numeroChamado
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ erro: "Erro ao registrar pedido" });
+    }
 });
  
 

@@ -54,13 +54,52 @@ function renderizarcardapio(lista) {
         card.classList.add("item");
         card.href = `#${idModal}`;
 
+        const botaoAdicionar = document.createElement("button");
+        botaoAdicionar.type = "button";
+        botaoAdicionar.className = "btn-item botao-adicionar";
+        botaoAdicionar.textContent = "Adicionar";
+        botaoAdicionar.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            adicionarAoCarrinho(item);
+        });
+
+        const detalhes = document.createElement("span");
+        detalhes.className = "btn-item botao-detalhes";
+        detalhes.textContent = "Ver detalhes";
+
+        const containerAcoes = document.createElement("div");
+        containerAcoes.className = "acoes-cardapio";
+        containerAcoes.appendChild(detalhes);
+        containerAcoes.appendChild(botaoAdicionar);
+
+        // A primeira imagem visível é a candidata a LCP: carrega com prioridade alta.
+        // As demais usam lazy loading e o navegador escolhe a variante mais compacta.
+        const atributosImagem = index === 0
+            ? 'fetchpriority="high" loading="eager" decoding="async"'
+            : 'loading="lazy" decoding="async"';
+
+        const imagemMobile = item.imgMobile || item.img;
+        const imagemDesktop = item.img || item.imgMobile;
+        const srcset = item.imgMobile && item.img
+            ? `${imagemMobile} 480w, ${imagemDesktop} 800w`
+            : `${imagemDesktop}`;
+
         card.innerHTML = `
-            <img src="${item.img}" alt="${item.titulo}">
-            <h3 style="margin: 8px 0 4px;">${item.titulo}</h3>
+            <img
+                src="${imagemMobile}"
+                srcset="${srcset}"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                alt="${item.titulo}"
+                width="263"
+                height="175"
+                ${atributosImagem}
+            >
+            <h2 style="margin: 8px 0 4px; font-size: 18px; text-align:left;">${item.titulo}</h2>
             <p style="font-size:14px; flex:1;">${item.descricao}</p>
             <p style="font-size:16px; font-weight:bold; color:#c8922a; margin-top:8px;">R$ ${item.preco.toFixed(2)}</p>
-            <span class="btn-item">Ver detalhes</span>
         `;
+        card.appendChild(containerAcoes);
 
         listacardapio.appendChild(card);
         listacardapio.appendChild(criarModal(item, idModal));
@@ -125,5 +164,13 @@ buscarcardapio.addEventListener("input", function () {
     );
     renderizarcardapio(filtrados);
 });
+
+// Adiciona o item ao carrinho (função adicionarCarrinho vem do carrinho.js)
+window.adicionarAoCarrinho = function (item) {
+    if (!item) return;
+
+    const nome = adicionarCarrinho(item, item.id ?? item.titulo);
+    mostrarToast(`${nome} adicionado ao carrinho!`);
+};
 
 carregarcardapio();

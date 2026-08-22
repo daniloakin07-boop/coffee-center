@@ -1,7 +1,8 @@
 [
     {
         "titulo": "Café Expresso",
-        "img": "../img/inekehuizing-coffee-3727673_1920",
+        "img": "../img/optimized/inekehuizing-coffee-3727673_1920-800.webp",
+        "imgMobile": "../img/optimized/inekehuizing-coffee-3727673_1920-480.webp",
         "url": "../pages/expresso.html",
         "descricao": "Café forte e aromático preparado na hora",
         "descricaoCompleta": "O Café Expresso é preparado com grãos selecionados, extraídos sob alta pressão para garantir uma bebida intensa, encorpada e aromática. Perfeito para quem aprecia o café em sua forma mais pura e genuína.",
@@ -14,7 +15,8 @@
     },
     {
         "titulo": "Cappuccino",
-        "img": "../img/grafmex-coffee-3120757_1920",
+        "img": "../img/optimized/grafmex-coffee-3120757_1920-800.webp",
+        "imgMobile": "../img/optimized/grafmex-coffee-3120757_1920-480.webp",
         "url": "../pages/cappuccino.html",
         "descricao": "Mistura cremosa de café, leite e chocolate",
         "descricaoCompleta": "O Cappuccino é uma harmoniosa combinação de espresso, leite vaporizado e espuma de leite cremosa, finalizado com um toque de chocolate em pó. Uma experiência equilibrada e reconfortante.",
@@ -27,7 +29,8 @@
     },
     {
         "titulo": "Latte",
-        "img": "../img/VillaCafé_Cafés-1-760x460",
+        "img": "../img/optimized/VillaCafé_Cafés-1-760x460-800.webp",
+        "imgMobile": "../img/optimized/VillaCafé_Cafés-1-760x460-480.webp",
         "url": "../pages/latte.html",
         "descricao": "Café suave com bastante leite vaporizado",
         "descricaoCompleta": "O Latte é uma bebida suave que combina uma dose de espresso com uma generosa quantidade de leite vaporizado. Cremoso, equilibrado e delicado — a opção perfeita para quem prefere o café mais suave.",
@@ -40,7 +43,8 @@
     },
     {
         "titulo": "Mocha",
-        "img": "../img/juno1412-coffee-5981681_1920",
+        "img": "../img/optimized/juno1412-coffee-5981681_1920-800.webp",
+        "imgMobile": "../img/optimized/juno1412-coffee-5981681_1920-480.webp",
         "url": "../pages/mocha.html",
         "descricao": "Combinação deliciosa de café e chocolate",
         "descricaoCompleta": "O Mocha é uma fusão de café espresso com chocolate amargo de primeira qualidade, coberto por uma generosa camada de espuma de leite. Uma experiência indulgente para amantes de café e chocolate.",
@@ -53,7 +57,8 @@
     },
     {
         "titulo": "Pão de Queijo",
-        "img": "../img/craveiro6-pao-de-queijo-4968507_1920",
+        "img": "../img/optimized/craveiro6-pao-de-queijo-4968507_1920-800.webp",
+        "imgMobile": "../img/optimized/craveiro6-pao-de-queijo-4968507_1920-480.webp",
         "url": "../pages/paodequeijo.html",
         "descricao": "Tradicional pão de queijo quentinho",
         "descricaoCompleta": "Nosso Pão de Queijo é feito com polvilho azedo, queijo meia-cura e ingredientes frescos selecionados. Servido quentinho, com casca levemente crocante e interior macio e puxento.",
@@ -66,7 +71,8 @@
     },
     {
         "titulo": "Croissant",
-        "img": "../img/photowill-bread-4077812_1920",
+        "img": "../img/optimized/photowill-bread-4077812_1920-800.webp",
+        "imgMobile": "../img/optimized/photowill-bread-4077812_1920-480.webp",
         "url": "../pages/croissant.html",
         "descricao": "Massa folhada leve e crocante",
         "descricaoCompleta": "Nosso Croissant é preparado artesanalmente com manteiga francesa de alta qualidade. Massa folhada com camadas delicadas, exterior dourado e crocante, interior macio e amanteigado.",
@@ -79,7 +85,8 @@
     },
     {
         "titulo": "Cheesecake",
-        "img": "../img/teddybear78-dessert-2366485_1920",
+        "img": "../img/optimized/teddybear78-dessert-2366485_1920-800.webp",
+        "imgMobile": "../img/optimized/teddybear78-dessert-2366485_1920-480.webp",
         "url": "../pages/cheesecake.html",
         "descricao": "Sobremesa cremosa com calda de frutas vermelhas",
         "descricaoCompleta": "Nossa Cheesecake é preparada com cream cheese de alta qualidade, base de biscoito amanteigado e finalizada com uma generosa calda de frutas vermelhas frescas. Cremosa, equilibrada e irresistível.",

@@ -1,54 +1,56 @@
 <!DOCTYPE html>
-<html>
-<!-- Cabeça do Site-->
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="widht=device-width, initial-scale=1.0">
-        <meta name="description" content="O Coffee Center oferece cafés especiais e blends exclusivos." >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="O Coffee Center oferece cafés especiais e blends exclusivos.">
         <link rel="stylesheet" href="CSS/style.css">
         <title>Coffee Center - Café de Especialidade</title>
     </head>
 
-    <!-- Corpo do Site -->
     <body>
-        <header class="topo"> <!-- Cabeçalho do Site -->
-            <div class="logo">
-                <a href="index.html">Coffee<span>Center</span></a>
+        <header class="topo">
+            <div class="logo" aria-label="Coffee Center home">
+                <a href="index.html" aria-label="Ir para a página inicial">Coffee<span>Center</span></a>
             </div>
-            <nav class="menu">
-                <a href="index.html" class="ativo">Início</a>
-                <a href="pages/cardapio.html">cardapio</a>
+
+            <nav class="menu" aria-label="Menu principal">
+                <a href="index.html" class="ativo" aria-current="page">Início</a>
+                <a href="pages/cardapio.html">Cardápio</a>
                 <a href="pages/sobre.html">Sobre</a>
                 <a href="pages/contato.html">Contato</a>
             </nav>
         </header>
 
-        <!-- Seção Hero -->
-        <section class="hero">
-            <h1>O melhor café direto pra sua xícara</h1>
-            <p>Grãos selecionados, torras artesanais e blends exclusivos para quem leva o café a sério.</p>
-            <a href="pages/produtos.html" class="btn-primario">Ver cardapio</a>
-            <a href="pages/sobre.html" class="btn-secundario">Saiba Mais</a>
-        </section>
+        <main id="conteudo-principal">
+            <section class="hero" aria-labelledby="titulo-principal">
+                <h1 id="titulo-principal">O melhor café direto pra sua xícara</h1>
+                <p>Grãos selecionados, torras artesanais e blends exclusivos para quem leva o café a sério.</p>
+                <div class="hero-actions">
+                    <a href="pages/cardapio.html" class="btn-primario">Ver cardapio</a>
+                    <a href="pages/sobre.html" class="btn-secundario">Saiba Mais</a>
+                </div>
+            </section>
 
-        <!-- Cards de destaque -->
-        <section class="cards container">
-            <div class="card">
-                <h3>Grãos Especiais</h3>
-                <p>Cafés single origin de fazendas certificadas no Brasil, Etiópia e Colômbia.</p>
-            </div>
-            <div class="card">
-                <h3>Torra Artesanal</h3>
-                <p>Cada lote torrado com cuidado para revelar o melhor aroma e sabor do grão.</p>
-            </div>
-            <div class="card">
-                <h3>Assinatura Mensal</h3>
-                <p>Receba em casa os melhores blends da temporada com curadoria dos nossos baristas.</p>
-            </div>
-        </section>
+            <section class="cards container" aria-labelledby="destaques-titulo">
+                <h2 id="destaques-titulo" class="sr-only">Destaques do Coffee Center</h2>
+                <div class="card">
+                    <h3>Grãos Especiais</h3>
+                    <p>Cafés single origin de fazendas certificadas no Brasil, Etiópia e Colômbia.</p>
+                </div>
+                <div class="card">
+                    <h3>Torra Artesanal</h3>
+                    <p>Cada lote torrado com cuidado para revelar o melhor aroma e sabor do grão.</p>
+                </div>
+                <div class="card">
+                    <h3>Assinatura Mensal</h3>
+                    <p>Receba em casa os melhores blends da temporada com curadoria dos nossos baristas.</p>
+                </div>
+            </section>
+        </main>
 
         <footer class="rodape">
-            <p>®  2026 Coffee Center. Todos os Direitos Reservados</p>
+            <p>® 2026 Coffee Center. Todos os Direitos Reservados</p>
             <p><a href="pages/contato.html">Entre em Contato</a></p>
         </footer>
     </body>
