@@ -28,11 +28,17 @@
 
         <main id="conteudo-principal" class="pagina-carrinho">
             <section aria-labelledby="titulo-carrinho" style="padding: 30px 20px;">
+                <!-- Título principal da página.
+                     Ele identifica o conteúdo da área do carrinho para usuários e acessibilidade. -->
                 <h1 id="titulo-carrinho" style="text-align:center; color:#f0e6d0;">Seu Carrinho</h1>
 
                 <div class="carrinho-container">
+                    <!-- Container da lista de produtos.
+                         Aqui o JavaScript insere cada item do carrinho dinamicamente. -->
                     <div class="carrinho-lista" id="listaCarrinho" aria-live="polite"></div>
 
+                    <!-- Área do resumo do pedido.
+                         Mostra subtotal, entrega grátis e valor total do pedido. -->
                     <aside class="carrinho-resumo" aria-label="Resumo do pedido">
                         <h2>Resumo</h2>
                         <div class="resumo-item">
@@ -47,10 +53,20 @@
                             <span>Total:</span>
                             <span id="valorTotalFinal">R$ 0,00</span>
                         </div>
+
+                        <!-- Botão principal do pedido.
+                             Quando o usuário clica, o JavaScript lê o carrinho,
+                             valida se há itens e envia para a rota /pedido no backend. -->
                         <button class="btn-finalizar" id="btnFinalizar" type="button">Finalizar Pedido</button>
+
+                        <!-- Link para voltar ao cardápio sem perder o carrinho.
+                             O botão dentro do link serve para manter a mesma aparência visual do restante do layout. -->
                         <a href="cardapio.html" style="text-decoration:none; display:block;">
                             <button class="btn-continuar" type="button">Continuar Comprando</button>
                         </a>
+
+                        <!-- Botão para limpar todos os itens do carrinho.
+                             Ele aciona a função que remove os dados do localStorage e renderiza a tela vazia. -->
                         <button class="btn-continuar" id="btnLimpar" type="button" style="border-color:#a33636; color:#a33636;">
                             Limpar Carrinho
                         </button>
@@ -64,7 +80,25 @@
             <p><a href="contato.html">Entre em Contato</a></p>
         </footer>
 
+        <!-- Modal de confirmação do pedido.
+             Este bloco fica escondido por padrão e só aparece quando o pedido
+             é enviado com sucesso. Ele mostra o número da chamada para o cliente,
+             para que ele possa ir ao caixa e pagar ao final da refeição.
+
+             Observação importante sobre HTML e CSS:
+             o HTML aqui cria a estrutura da modal, enquanto o CSS inline
+             dentro do atributo style aplica a aparência visual deste bloco.
+             Isso é uma mistura de HTML + CSS na mesma linha, mas ela é simples
+             e útil em casos de elementos únicos, como esta mensagem de confirmação.
+             O ideal é manter a maior parte do estilo em arquivos externos como
+             CSS/style.css e CSS/carrinho.css, mas esse trecho foi deixado direto
+             para facilitar a visualização do comportamento da modal. -->
         <div id="modalPedido" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.65); align-items:center; justify-content:center; z-index:999;">
+            <!-- Caixa principal da modal.
+                 Aqui ficam as mensagens e o botão de confirmação.
+                 O estilo desta caixa também está em inline, porque é um bloco
+                 específico da confirmação do pedido: cor de fundo, borda, alinhamento
+                 e tamanho da caixa não são reutilizados em outros elementos da página. -->
             <div style="background:#2e1a0e; border:2px solid #c8922a; border-radius:14px; padding:40px 30px; max-width:380px; width:90%; text-align:center; color:#f0e6d0; box-shadow:0 10px 30px rgba(0,0,0,.5);">
                 <h2 style="color:#c8922a; margin-top:0;">Pedido Confirmado!</h2>
                 <p style="font-size:1rem; margin:15px 0 5px;">Seu número de chamada é:</p>

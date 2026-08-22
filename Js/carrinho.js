@@ -1,51 +1,60 @@
-// carrinho.js
-// OBS: BASE_URL já é declarado em auth.js (carregado antes deste arquivo),
-// por isso NÃO redeclaramos "const BASE_URL" aqui.
-
 // ======================================================
-// STORAGE DO CARRINHO (usado tanto no cardápio quanto na página do carrinho)
+// CARRINHO.JS - GERENCIAMENTO DO CARRINHO DE COMPRAS
 // ======================================================
+// Este arquivo controla tudo relacionado ao carrinho:
+// - lê e salva os itens no localStorage;
+// - atualiza o contador do ícone;
+// - renderiza a lista dos produtos na página;
+// - permite aumentar, diminuir, remover e limpar os itens;
+// - envia o pedido ao backend para registrar no banco.
+//
+// Observação importante: o BASE_URL vem do arquivo auth.js,
+// que já foi carregado antes deste script, por isso não é re-declarado aqui.
 
-const CARRINHO_STORAGE_KEY = "carrinho"
+const CARRINHO_STORAGE_KEY = "carrinho";
 
+// Lê o carrinho salvo no navegador.
+// O localStorage guarda os dados em formato JSON.
 function pegarCarrinho() {
     try {
-        const dados = localStorage.getItem(CARRINHO_STORAGE_KEY)
-        return dados ? JSON.parse(dados) : []
+        const dados = localStorage.getItem(CARRINHO_STORAGE_KEY);
+        return dados ? JSON.parse(dados) : [];
     } catch {
-        return []
+        return [];
     }
 }
 
+// Salva o carrinho no navegador e atualiza o contador visual do ícone.
 function salvarCarrinho(carrinho) {
-    localStorage.setItem(CARRINHO_STORAGE_KEY, JSON.stringify(carrinho))
-    atualizarContadorCarrinho()
+    localStorage.setItem(CARRINHO_STORAGE_KEY, JSON.stringify(carrinho));
+    atualizarContadorCarrinho();
 }
 
+// Atualiza o número de itens exibido no botão do carrinho no topo da página.
 function atualizarContadorCarrinho() {
-    const contador = document.getElementById("contadorCarrinho")
-    if (!contador) return
+    const contador = document.getElementById("contadorCarrinho");
+    if (!contador) return;
 
-    const carrinho = pegarCarrinho()
-    const totalItens = carrinho.reduce((soma, produto) => soma + produto.quantidade, 0)
+    const carrinho = pegarCarrinho();
+    const totalItens = carrinho.reduce((soma, produto) => soma + produto.quantidade, 0);
 
     if (totalItens > 0) {
-        contador.textContent = totalItens
-        contador.style.display = "flex"
+        contador.textContent = totalItens;
+        contador.style.display = "flex";
     } else {
-        contador.style.display = "none"
+        contador.style.display = "none";
     }
 }
 
-// Recebe um item do cardápio (titulo, preco, img, id) e adiciona ao carrinho.
-// Se o produto já existir, apenas aumenta a quantidade.
+// Adiciona um item ao carrinho.
+// Se o produto já existe, aumenta a quantidade em vez de criar outro igual.
 function adicionarCarrinho(item, id) {
-    const carrinho = pegarCarrinho()
-    const idProduto = id ?? item.id ?? item.titulo
-    const existente = carrinho.find(produto => produto.id === idProduto)
+    const carrinho = pegarCarrinho();
+    const idProduto = id ?? item.id ?? item.titulo;
+    const existente = carrinho.find(produto => produto.id === idProduto);
 
     if (existente) {
-        existente.quantidade += 1
+        existente.quantidade += 1;
     } else {
         carrinho.push({
             id: idProduto,
@@ -53,58 +62,65 @@ function adicionarCarrinho(item, id) {
             preco: item.preco,
             imagem: item.img,
             quantidade: 1
-        })
+        });
     }
 
-    salvarCarrinho(carrinho)
-    return item.titulo
+    salvarCarrinho(carrinho);
+    return item.titulo;
 }
 
+// Remove um produto específico do carrinho usando o id do item.
 function removerCarrinho(id) {
-    const carrinho = pegarCarrinho().filter(produto => produto.id !== id)
-    salvarCarrinho(carrinho)
+    const carrinho = pegarCarrinho().filter(produto => produto.id !== id);
+    salvarCarrinho(carrinho);
 }
 
+// Aumenta em 1 a quantidade do item selecionado.
 function aumentarQuantidade(id) {
-    const carrinho = pegarCarrinho()
-    const produto = carrinho.find(p => p.id === id)
-    if (produto) produto.quantidade += 1
-    salvarCarrinho(carrinho)
+    const carrinho = pegarCarrinho();
+    const produto = carrinho.find(p => p.id === id);
+    if (produto) produto.quantidade += 1;
+    salvarCarrinho(carrinho);
 }
 
+// Diminui em 1 a quantidade do item selecionado.
+// Quando chega a zero, ele remove o produto do carrinho.
 function diminuirQuantidade(id) {
-    const carrinho = pegarCarrinho()
-    const produto = carrinho.find(p => p.id === id)
+    const carrinho = pegarCarrinho();
+    const produto = carrinho.find(p => p.id === id);
 
     if (produto) {
-        produto.quantidade -= 1
+        produto.quantidade -= 1;
         if (produto.quantidade <= 0) {
-            return removerCarrinho(id)
+            return removerCarrinho(id);
         }
     }
 
-    salvarCarrinho(carrinho)
+    salvarCarrinho(carrinho);
 }
 
+// Limpa totalmente o carrinho,
+// apagando todos os itens salvos no navegador.
 function limparCarrinho() {
-    salvarCarrinho([])
+    salvarCarrinho([]);
 }
 
+// Calcula o valor total do pedido somando preço × quantidade de todos os itens.
 function calcularTotal() {
-    return pegarCarrinho().reduce((soma, produto) => soma + produto.preco * produto.quantidade, 0)
+    return pegarCarrinho().reduce((soma, produto) => soma + produto.preco * produto.quantidade, 0);
 }
 
-document.addEventListener("DOMContentLoaded", atualizarContadorCarrinho)
+// Avisa o usuário no navegador sobre ações do carrinho sem usar prompt/alert.
+document.addEventListener("DOMContentLoaded", atualizarContadorCarrinho);
 
-// Aviso discreto no canto da tela, no lugar do alert() padrão do navegador.
-// Usado tanto no cardápio (ao adicionar item) quanto em outras páginas.
+// Cria um toast de confirmação no canto inferior direito.
 function mostrarToast(mensagem) {
-    const existente = document.getElementById("toastCarrinho")
-    if (existente) existente.remove()
+    const existente = document.getElementById("toastCarrinho");
+    if (existente) existente.remove();
 
-    const toast = document.createElement("div")
-    toast.id = "toastCarrinho"
-    toast.textContent = mensagem
+    const toast = document.createElement("div");
+    toast.id = "toastCarrinho";
+    toast.textContent = mensagem;
     toast.style.cssText = `
         position: fixed;
         bottom: 24px;
@@ -121,37 +137,37 @@ function mostrarToast(mensagem) {
         opacity: 0;
         transform: translateY(10px);
         transition: opacity .25s ease, transform .25s ease;
-    `
+    `;
 
-    document.body.appendChild(toast)
+    document.body.appendChild(toast);
 
     requestAnimationFrame(() => {
-        toast.style.opacity = "1"
-        toast.style.transform = "translateY(0)"
-    })
+        toast.style.opacity = "1";
+        toast.style.transform = "translateY(0)";
+    });
 
     setTimeout(() => {
-        toast.style.opacity = "0"
-        toast.style.transform = "translateY(10px)"
-        setTimeout(() => toast.remove(), 250)
-    }, 2200)
+        toast.style.opacity = "0";
+        toast.style.transform = "translateY(10px)";
+        setTimeout(() => toast.remove(), 250);
+    }, 2200);
 }
 
 // ======================================================
 // LÓGICA DA PÁGINA DO CARRINHO (carrinho.html)
-// As linhas abaixo só têm efeito se os elementos existirem na página,
-// então é seguro carregar este arquivo também no cardápio.html.
 // ======================================================
+// Aqui o código só funciona quando a página de carrinho existir.
+// Ele monta os itens em tela, mostra subtotal e total e envia o pedido para o backend.
 
 const lista = document.getElementById("listaCarrinho");
 const totalEl = document.getElementById("valorTotalFinal");
 const subtotalEl = document.getElementById("valorSubtotal");
 
+// Renderiza a lista de produtos do carrinho na tela.
 function renderizarCarrinho() {
     if (!lista) return;
 
     const carrinho = pegarCarrinho();
-
     lista.innerHTML = "";
 
     if (carrinho.length === 0) {
@@ -189,6 +205,7 @@ function renderizarCarrinho() {
     subtotalEl.innerHTML = `R$ ${totalFormatado}`;
 }
 
+// Torna as funções globais para que os botões HTML possam chamar elas diretamente.
 window.aumentar = (id) => {
     aumentarQuantidade(id);
     renderizarCarrinho();
@@ -204,6 +221,7 @@ window.remover = (id) => {
     renderizarCarrinho();
 };
 
+// Botão de limpar o carrinho.
 const btnLimpar = document.getElementById("btnLimpar");
 if (btnLimpar) {
     btnLimpar.onclick = () => {
@@ -214,6 +232,7 @@ if (btnLimpar) {
     };
 }
 
+// Botão para finalizar o pedido.
 const btnFinalizar = document.getElementById("btnFinalizar");
 if (btnFinalizar) {
     btnFinalizar.onclick = async () => {
@@ -235,6 +254,7 @@ if (btnFinalizar) {
                 })
             });
 
+            // Se a sessão não estiver ativa, redireciona para login.
             if (resposta.status === 401) {
                 alert("Você precisa estar logado para finalizar o pedido.");
                 window.location.href = "login.html";
@@ -243,6 +263,7 @@ if (btnFinalizar) {
 
             const dados = await resposta.json().catch(() => ({}));
 
+            // Se o backend devolver erro, mostra a mensagem no navegador.
             if (!resposta.ok) {
                 const mensagem = dados.erro || "Erro ao finalizar o pedido.";
                 alert(mensagem.includes("Servidor") || mensagem.includes("connect")
@@ -261,6 +282,7 @@ if (btnFinalizar) {
     };
 }
 
+// Exibe a modal com o número do pedido para o cliente.
 function mostrarConfirmacaoPedido(numero) {
     const modal = document.getElementById("modalPedido");
     if (!modal) return;
@@ -268,6 +290,7 @@ function mostrarConfirmacaoPedido(numero) {
     modal.style.display = "flex";
 }
 
+// Fecha a modal de confirmação e retorna para o cardápio.
 const btnFecharPedido = document.getElementById("btnFecharPedido");
 if (btnFecharPedido) {
     btnFecharPedido.onclick = () => {
@@ -276,4 +299,5 @@ if (btnFecharPedido) {
     };
 }
 
+// Garante que o carrinho seja exibido assim que a página abrir.
 renderizarCarrinho();
