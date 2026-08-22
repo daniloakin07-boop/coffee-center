@@ -2,6 +2,33 @@ const BASE_URL = window.location.hostname === "localhost" || window.location.hos
     ? "http://localhost:3000"
     : "https://coffee-center-2.onrender.com"
 
+async function verificarSessao() {
+    const estaNaPaginaCardapio = window.location.pathname.includes("cardapio.html")
+    if (!estaNaPaginaCardapio) return true
+
+    try {
+        const resposta = await fetch(`${BASE_URL}/me`, {
+            credentials: "include"
+        })
+
+        const dados = await resposta.json().catch(() => ({}))
+
+        if (!resposta.ok || !dados.logado) {
+            window.location.href = "login.html"
+            return false
+        }
+
+        return true
+    } catch {
+        window.location.href = "login.html"
+        return false
+    }
+}
+
+if (window.location.pathname.includes("cardapio.html")) {
+    verificarSessao()
+}
+
 const formLogin = document.getElementById("formLogin")
 if (formLogin) {
     formLogin.addEventListener("submit", async function (e) {

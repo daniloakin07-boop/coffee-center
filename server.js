@@ -30,6 +30,8 @@ const app = express();
 const listOrigins = [
     "http://localhost:5501", // ambiente local (live server)
     "http://127.0.0.1:5501", // variação de localhost
+    "http://localhost:5500", // porta padrão do Live Server
+    "http://127.0.0.1:5500", // porta padrão do Live Server (variação)
     "https://rickjordan20.github.io" // dominio do frontend em produção
 ]
  
