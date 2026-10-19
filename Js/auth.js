@@ -23,15 +23,24 @@ function paginaNoServidorLocal() {
 // Monta a URL da página correta, levando em conta o ambiente local ou produção.
 // Isso evita que uma rota de página dê erro quando o site é acessado de outra origem.
 function urlPagina(pagina) {
-    if (paginaNoServidorLocal() && !window.location.href.includes("http://localhost:3000")) {
+    if (paginaNoServidorLocal() && window.location.port !== "3000") {
         return `http://localhost:3000/pages/${pagina}`;
     }
 
-    if (window.location.pathname.includes("/pages/")) {
-        return `${window.location.origin}/pages/${pagina}`;
+    const caminho = window.location.pathname;
+    const indicePages = caminho.indexOf("/pages/");
+    let caminhoBase;
+
+    if (indicePages >= 0) {
+        caminhoBase = caminho.slice(0, indicePages);
+    } else {
+        const caminhoSemBarraFinal = caminho.replace(/\/+$/, "");
+        caminhoBase = caminhoSemBarraFinal.endsWith(".html")
+            ? caminhoSemBarraFinal.slice(0, caminhoSemBarraFinal.lastIndexOf("/"))
+            : caminhoSemBarraFinal;
     }
 
-    return `${window.location.origin}/${pagina}`;
+    return `${window.location.origin}${caminhoBase}/pages/${pagina}`;
 }
 
 // Redireciona para a página de login.
@@ -44,11 +53,16 @@ function irParaCardapio() {
     window.location.assign(urlPagina("cardapio.html"));
 }
 
-// Verifica se o usuário está autenticado antes de abrir o cardápio.
-// Se não estiver, manda para o login.
+// Atualiza os links do cardápio de acordo com o estado da sessão.
+function atualizarLinksCardapio(logado) {
+    document.querySelectorAll("[data-menu-link]").forEach((link) => {
+        link.href = urlPagina(logado ? "cardapio.html" : "login.html");
+    });
+}
+
+// Verifica a sessão e só libera o cardápio após confirmar o login.
 async function verificarSessao() {
     const estaNaPaginaCardapio = window.location.pathname.includes("cardapio.html");
-    if (!estaNaPaginaCardapio) return true;
 
     try {
         const resposta = await fetch(`${BASE_URL}/me`, {
@@ -56,23 +70,29 @@ async function verificarSessao() {
         });
 
         const dados = await resposta.json().catch(() => ({}));
+        const logado = resposta.ok && dados.logado;
+        atualizarLinksCardapio(logado);
 
-        if (!resposta.ok || !dados.logado) {
+        if (!logado && estaNaPaginaCardapio) {
             irParaLogin();
             return false;
         }
 
-        return true;
+        if (logado && estaNaPaginaCardapio) {
+            const secaoCardapio = document.querySelector(".cardapio");
+            if (secaoCardapio) secaoCardapio.style.visibility = "visible";
+        }
+
+        return logado;
     } catch {
-        irParaLogin();
+        atualizarLinksCardapio(false);
+        if (estaNaPaginaCardapio) irParaLogin();
         return false;
     }
 }
 
-// Quando entra na página de cardápio, a sessão é checada imediatamente.
-if (window.location.pathname.includes("cardapio.html")) {
-    verificarSessao();
-}
+// Valida a sessão assim que o script é carregado.
+verificarSessao();
 
 // Busca o formulário de login no HTML.
 const formLogin = document.getElementById("formLogin");
